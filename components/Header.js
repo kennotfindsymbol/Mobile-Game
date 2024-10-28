@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Platform } from "react-native";
 
 import Colors from "../constants/colors";
 
@@ -18,10 +18,13 @@ const styles = StyleSheet.create({
     paddingTop: 48,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: Colors.primary,
+    backgroundColor: Platform.OS === "ios" ? "white" : Colors.primary,
+    borderBottomWidth: Platform.OS === "ios" ? 1 : 0,
+    borderBottomColor: Platform.OS === "ios" ? "#ccc" : "transparent",
   },
   headerText: {
     fontSize: 24,
+    color: Platform.OS === "ios" ? Colors.primary : "white",
   },
 });
 
