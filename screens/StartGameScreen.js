@@ -7,6 +7,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Alert,
+  ScrollView,
 } from "react-native";
 
 import Card from "../components/Card";
@@ -43,6 +44,7 @@ const StartGameScreen = (props) => {
   };
 
   return (
+    <ScrollView>
     <TouchableWithoutFeedback
       onPress={() => {
         Keyboard.dismiss();
@@ -87,6 +89,7 @@ const StartGameScreen = (props) => {
         )}
       </View>
     </TouchableWithoutFeedback>
+  </ScrollView>
   );
 };
 
