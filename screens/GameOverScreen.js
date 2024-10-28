@@ -1,5 +1,12 @@
 import React from "react";
-import { Text, View, StyleSheet, Button, Image } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Button,
+  Image,
+  Dimensions,
+} from "react-native";
 
 import MainButton from "../components/MainButton";
 
@@ -21,9 +28,15 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: "papyrus",
-    fontSize: 28,
+    fontSize: Dimensions.get("window").width > 400 ? 28 : 24,
     textAlign: "center,",
   },
+  gif: {
+    marginTop: 10,
+    maxHeight: Dimensions.get("window").height * 0.5,
+    height: 500,
+    aspectRatio: 9 / 16,
+  }
 });
 
 export default GameOverScreen;
