@@ -7,20 +7,29 @@ import {
   Image,
   Dimensions,
   useWindowDimensions,
+  ScrollView,
 } from "react-native";
 
 import MainButton from "../components/MainButton";
 
 const GameOverScreen = (props) => {
-  const {height, width} = useWindowDimensions();
+  const { height, width } = useWindowDimensions();
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>GAME OVER! Took {props.gameRound} round</Text>
-      <Text style={styles.text}>The number was {props.userNumber}</Text>
-      <MainButton onPress={props.onRestart}>Again</MainButton>
-      <Image style={{...styles.gif, maxHeight: height > 500 ? height * 0.6 : height * 0.3}} source={require("../assets/goofydance.gif")} />
-    </View>
+    <ScrollView>
+      <View style={styles.container}>
+        <Text style={styles.text}>GAME OVER! Took {props.gameRound} round</Text>
+        <Text style={styles.text}>The number was {props.userNumber}</Text>
+        <MainButton onPress={props.onRestart}>Again</MainButton>
+        <Image
+          style={{
+            ...styles.gif,
+            maxHeight: height > 500 ? height * 0.6 : height * 0.3,
+          }}
+          source={require("../assets/goofydance.gif")}
+        />
+      </View>
+    </ScrollView>
   );
 };
 
@@ -38,7 +47,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     height: 500,
     aspectRatio: 9 / 16,
-  }
+  },
 });
 
 export default GameOverScreen;
