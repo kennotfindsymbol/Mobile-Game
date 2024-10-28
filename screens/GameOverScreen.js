@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Text,
   View,
@@ -13,9 +13,17 @@ import MainButton from "../components/MainButton";
 const GameOverScreen = (props) => {
   const [gifHeight, setGifHeight] = useState(Dimensions.get('window').height * 0.5);
 
-  Dimensions.addEventListener('change', () => {
-    setGifHeight(Dimensions.get('window').height * 0.5);
-  })
+  useEffect (() => {
+    const updateLayout = () => {
+      setGifHeight(Dimensions.get('window').height * 0.5);
+    };
+
+    const listener = Dimensions.addEventListener('change', updateLayout);
+
+    return () => {
+      listener.remove();
+    };
+  });
 
   return (
     <View style={styles.container}>
