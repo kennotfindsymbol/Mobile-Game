@@ -80,7 +80,7 @@ const StartGameScreen = (props) => {
           </View>
         </Card>
         {confirmed && (
-          <View style={{alignItems: "center"}}>
+          <View>
             <NumberContainer number={selectedNumber}/>
             <MainButton onPress={() => {props.onStartGame(selectedNumber)}}>Start</MainButton>
           </View>

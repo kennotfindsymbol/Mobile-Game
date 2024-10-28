@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Dimensions } from "react-native";
 
 import Card from "./Card";
 
@@ -15,7 +15,7 @@ const NumberContainer = (props) => {
 
 const styles = StyleSheet.create({
   numberContainer: {
-    marginVertical: 50,
+    marginVertical: Dimensions.get('window').height > 670 ? 30 : 5,
   },
   number: {
     textAlign: "center",
