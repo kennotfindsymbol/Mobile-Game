@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Text,
   View,
@@ -11,12 +11,18 @@ import {
 import MainButton from "../components/MainButton";
 
 const GameOverScreen = (props) => {
+  const [gifHeight, setGifHeight] = useState(Dimensions.get('window').height * 0.5);
+
+  Dimensions.addEventListener('change', () => {
+    setGifHeight(Dimensions.get('window').height * 0.5);
+  })
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>GAME OVER! Took {props.gameRound} round</Text>
       <Text style={styles.text}>The number was {props.userNumber}</Text>
       <MainButton onPress={props.onRestart}>Again</MainButton>
-      <Image style={styles.gif} source={require("../assets/goofydance.gif")} />
+      <Image style={{...styles.gif, maxHeight: gifHeight}} source={require("../assets/goofydance.gif")} />
     </View>
   );
 };
@@ -33,7 +39,6 @@ const styles = StyleSheet.create({
   },
   gif: {
     marginTop: 10,
-    maxHeight: Dimensions.get("window").height * 0.5,
     height: 500,
     aspectRatio: 9 / 16,
   }
