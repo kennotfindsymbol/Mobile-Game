@@ -7,6 +7,7 @@ import {
   Alert,
   ScrollView,
   FlatList,
+  useWindowDimensions,
 } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
 
@@ -37,6 +38,7 @@ const GameScreen = (props) => {
 
   const [gameRound, setGameRound] = useState(0);
   const [prevGuesses, setPrevGuesses] = useState([]);
+  const {height, width} = useWindowDimensions();
 
   const currentLow = useRef(1);
   const currentHigh = useRef(100);
@@ -78,6 +80,36 @@ const GameScreen = (props) => {
     setPrevGuesses((prevGuesses) => [nextNumber.toString(), ...prevGuesses]);
     console.log(prevGuesses);
   };
+
+  if (height < 500) {
+    return (
+      <View style={styles.screen}>
+        <Text style={styles.title}>Opponent's Guess</Text>
+        <Card style={styles.buttonContainer}>
+          <MainButton onPress={nextGuessHandler.bind(this, "lower")}>
+            <AntDesign name="downcircleo" size={36} color="black" />
+          </MainButton>
+          <Text style={styles.number}>{currentGuess}</Text>
+          <MainButton onPress={nextGuessHandler.bind(this, "higher")}>
+            <AntDesign name="upcircleo" size={36} color="black" />
+          </MainButton>
+        </Card>
+        <View style={styles.listContainer}>
+          {/* <ScrollView contentContainerStyle={styles.list}>
+            {prevGuesses.map((guess, index) =>
+              renderListItem(guess, prevGuesses.length - index)
+            )}
+          </ScrollView> */}
+          <FlatList
+            keyExtractor={(item) => item}
+            data={prevGuesses}
+            renderItem={renderListItem.bind(this, prevGuesses.length)}
+            contentContainerStyle={styles.list}
+          />
+        </View>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.screen}>
