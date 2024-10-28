@@ -6,31 +6,20 @@ import {
   Button,
   Image,
   Dimensions,
+  useWindowDimensions,
 } from "react-native";
 
 import MainButton from "../components/MainButton";
 
 const GameOverScreen = (props) => {
-  const [gifHeight, setGifHeight] = useState(Dimensions.get('window').height * 0.5);
-
-  useEffect (() => {
-    const updateLayout = () => {
-      setGifHeight(Dimensions.get('window').height * 0.5);
-    };
-
-    const listener = Dimensions.addEventListener('change', updateLayout);
-
-    return () => {
-      listener.remove();
-    };
-  });
+  const {height, width} = useWindowDimensions();
 
   return (
     <View style={styles.container}>
       <Text style={styles.text}>GAME OVER! Took {props.gameRound} round</Text>
       <Text style={styles.text}>The number was {props.userNumber}</Text>
       <MainButton onPress={props.onRestart}>Again</MainButton>
-      <Image style={{...styles.gif, maxHeight: gifHeight}} source={require("../assets/goofydance.gif")} />
+      <Image style={{...styles.gif, maxHeight: height > 500 ? height * 0.6 : height * 0.3}} source={require("../assets/goofydance.gif")} />
     </View>
   );
 };
