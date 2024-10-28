@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import * as Font from "expo-font"
+import * as Font from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 
 import Header from "./components/Header";
@@ -20,11 +20,11 @@ export default function App() {
       try {
         // Pre-load fonts, make any API calls you need to do here
         await Font.loadAsync({
-          "papyrus": require("./assets/fonts/papyrus.ttf")
+          papyrus: require("./assets/fonts/papyrus.ttf"),
         });
         // Artificially delay for two seconds to simulate a slow loading
         // experience. Please remove this if you copy and paste the code!
-        await new Promise(resolve => setTimeout(resolve, 500));
+        await new Promise((resolve) => setTimeout(resolve, 500));
       } catch (e) {
         console.warn(e);
       } finally {

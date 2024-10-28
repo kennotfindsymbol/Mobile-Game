@@ -15,7 +15,7 @@ const NumberContainer = (props) => {
 
 const styles = StyleSheet.create({
   numberContainer: {
-    marginVertical: Dimensions.get('window').height > 670 ? 30 : 5,
+    marginVertical: Dimensions.get("window").height > 670 ? 30 : 5,
   },
   number: {
     textAlign: "center",

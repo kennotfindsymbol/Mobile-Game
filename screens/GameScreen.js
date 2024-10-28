@@ -38,7 +38,7 @@ const GameScreen = (props) => {
 
   const [gameRound, setGameRound] = useState(0);
   const [prevGuesses, setPrevGuesses] = useState([]);
-  const {height, width} = useWindowDimensions();
+  const { height, width } = useWindowDimensions();
 
   const currentLow = useRef(1);
   const currentHigh = useRef(100);
